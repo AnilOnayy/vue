@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Vue Js Learn</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <title>Document</title>
 </head>
+
 <body>
-    
+
+    <div id="app">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="text-center">Event</h3>
+
+                    <!-- One Way Data Binding -->
+                    <input 
+                    @input="inputName = $event.target.value" 
+                    :value="inputName" 
+                    type="text" 
+                    class="form-control"
+                    placeholder="Task Name">
+
+                    <!-- Two Way Data Binding-->
+                    <input 
+                    v-model="inputName"
+                    type="text" 
+                    class="form-control"
+                    placeholder="Task Name">
+
+
+                    <small> {{inputName}} </small>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
 </body>
+
 </html>
