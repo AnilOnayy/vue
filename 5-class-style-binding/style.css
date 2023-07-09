@@ -1,0 +1,37 @@
+* {
+    margin:0;
+    padding:0;
+    font-family :"'Courier New', Courier, monospace";
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+
+}
+
+
+.border{
+    border:3px dashed #000000!important;
+}
+
+.box{
+    width:100px;
+    height:100px;
+    background-color:#dedede
+}
+
+.red{
+    background-color: red!important;
+}
+
+.green{
+    background-color: green!important;
+}
+
+.blue{
+    background-color: blue!important;
+}
