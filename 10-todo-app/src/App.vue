@@ -4,8 +4,9 @@
 
     <!-- <AddTodo  @add-new-todo="addTodo" /> -->
     <AddTodo  :addTodo="addTodo" />
-    <!-- <TodoList :todos="this.todos"  @delete-todo-item="deleteTodo" /> -->
-    <TodoList :todos="this.todos" :deleteTodo ="deleteTodo" />
+  
+    <TodoSection  :delete-todo="deleteTodo" />
+    
  
   </div>
 </template>
@@ -13,12 +14,12 @@
 <script>
 
 import AddTodo  from '@/components/AddTodoComponent.vue';
-import TodoList from '@/components/TodoList.vue';
+import TodoSection from '@/components/TodoSection.vue';
 
 export default {
     created () {
       setTimeout(() => {
-        this.todos = [
+        this.provideData.todos = [
           { id: 1, text: "Bootcamp #2" },
           { id: 2, text: "Bootcamp #2.1 " },
           { id: 3, text: "Bootcamp #2.2 " },
@@ -32,19 +33,28 @@ export default {
   data() {
    
     return {
-      todos : [],
+      provideData :{
+        todos :[]
+      },
+      
     }
 
+  },
+  provide () {
+    return {
+      provideData : this.provideData,
+      deleteItem : this.deleteTodo
+    }
   },
 
   methods: {
 
     deleteTodo(todo) {
-      this.todos = this.todos.filter(todos => todos.id != todo.id);
+      this.provideData.todos = this.provideData.todos.filter(todos => todos.id != todo.id);
     },
 
     addTodo(event) {
-      this.todos.push({
+      this.provideData.todos.push({
         id: new Date().getTime() + Math.ceil(Math.random() * 1000000),
         text: event.target.value
       });
@@ -54,7 +64,7 @@ export default {
   },
   components : {
      AddTodo,
-     TodoList
+     TodoSection,
   }
 }
 </script>
