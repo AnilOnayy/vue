@@ -1,16 +1,21 @@
 <template>
     <label for="">Task</label>
-    <input @keydown.enter="sendData"  type="text" id="todo" placeholder="Bir şeyler yazınız." />
+    <input @keydown.enter="addTodo"  type="text" id="todo" placeholder="Bir şeyler yazınız." />
 </template>
 
 
 
 <script>
     export default {
-        methods :{
-            sendData(e) {
-                this.$emit("test-event",e);
+        props : {
+            addTodo : {
+                type : Function
             }
         }
+        // methods :{
+        //     addTodo(e) {
+        //         this.$emit("add-new-todo",e);
+        //     }
+        // }
     };
 </script>

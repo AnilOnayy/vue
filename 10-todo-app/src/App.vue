@@ -2,9 +2,11 @@
   <div class="container">
     <h3 class="text-center">Todo App</h3>
 
-    <AddTodo  @test-event="addTodo" />
-    <TodoList :todos="this.todos"/>
-    Hello World :D
+    <!-- <AddTodo  @add-new-todo="addTodo" /> -->
+    <AddTodo  :addTodo="addTodo" />
+    <!-- <TodoList :todos="this.todos"  @delete-todo-item="deleteTodo" /> -->
+    <TodoList :todos="this.todos" :deleteTodo ="deleteTodo" />
+ 
   </div>
 </template>
 
