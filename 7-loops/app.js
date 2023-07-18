@@ -15,8 +15,6 @@ const app = Vue.createApp({
     methods:{
         addTodo(event)
         {
-       
-          
             this.todoList.push({
                 id : new Date().getTime() + Math.ceil(Math.random(20000)),
                 text : event.target.value,
