@@ -1,67 +1,79 @@
 <template>
   <div class="container">
-    <h3>Alışveriş Listesi</h3>
-    <div>
-      <input type="text" placeholder="Ne Alacaksın?"  @keydown.enter="onSave" >
-    </div>
-    
-
-    <ul v-if="todoList.length > 0">
-      <li 
-      v-for="todo in todoList"
-      :key ="todo"
-      class="d-flex align-items-center justify-content-between">
-        <span> {{ todo.title }} </span>
-        <button class="sm red"  @click="onDelete(todo)" >Sil</button>
-      </li>
-      
-    </ul>
-    <div v-else class="bg-blue p-4 text-center my-2" style="padding:10px">
-        Henüz hiçbir ürün yok.
-    </div>
-    <small class="text-blue text-right d-flex justify-content-end mt-4">{{ todoList.length || 0  }} adet alınacak ürün vardır.</small>
+    <h3>Todo List</h3>
+    <TodoAdd/>
+    <TodoInfoSection/>
   </div>
+
 </template>
 
 
 <script>
+import axios from 'axios';
+import TodoAdd from './components/TodoAdd.vue';
+import TodoInfoSection from './components/TodoInfoSection.vue';
 
-import axios from 'axios'
 
 export default {
-  data(){
+
+  data () {
     return {
-      todoList : []
+      provideData : {
+        todos : []
+      }
     }
   },
 
-  mounted () {
-    axios.get("http://localhost:3000/items")
-    .then(response => {
-      this.todoList  = response.data || [];
-    })
+  mounted() {
+    this.getAll();
   },
- 
-  methods :{
-    onSave(e){
-      axios.post("http://localhost:3000/items",{
-        title :e.target.value,
-        created_at  :new Date(),
-        completed : false 
+
+  provide (){
+    return {
+      todos :() => this.provideData.todos,
+      onSave : this.onSave,
+      onTaskDelete : this.onTaskDelete
+    }
+  },
+
+
+  methods : {
+    onTaskDelete(todo){
+      axios.delete(`http://localhost:3000/todos/${todo.id}`)
+      .then(() => {
+        this.provideData.todos = this.provideData.todos.filter(todos => todos.id != todo.id);
       })
-      .then(response => {
-        this.todoList.push(response.data);
-        e.target.value = "";
-        e.target.focus();
+      
+    },
+    getAll(){
+      axios.get("http://localhost:3000/todos")
+      .then(res => {
+        this.provideData.todos =res.data;
       })
     },
-    onDelete(todo){
-      axios.delete(`http://localhost:3000/items/${todo.id}`)
-      .then(response => {
-          console.log(response);
-          this.todoList = this.todoList.filter(t => t.id !== todo.id);
+    onSave(e)
+    {
+      let newTodo = {
+        id : new Date().getTime(),
+        title : e.target.value,
+        created_at :new Date(),
+        completed : false
+      };
+
+      axios.post("http://localhost:3000/todos",newTodo)
+      .then(res => {
+        this.provideData.todos.push(res.data);
       })
+     
+
+      e.target.value = "";
+      e.target.focus();
     }
+  },
+
+  components: {
+    TodoAdd,
+    TodoInfoSection
   }
 }
 
