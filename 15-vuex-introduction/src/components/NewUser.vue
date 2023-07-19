@@ -8,7 +8,10 @@
         methods :{
             updateName()
             {
-                this.$store.state.userList.push("İrem - "+ new Date().getTime());
+                const value = "İrem - "+ new Date().getTime();
+                // this.$store.commit("newUser",value); // For mutations
+                this.$store.dispatch("newUser",value); // For actions
+                // this.$store.state.userList.push(value);
             } 
         }
     }

@@ -28,6 +28,27 @@ const store = createStore({
             {id :5 , title : "Bardak",  type : "plastik"},
         ]
     },
+
+    mutations : { //  all of the operations working in here.
+                 // but mutations are  sync , for this reason we using mutations in actions.
+        newUser(state,user){
+            state.userList.push(user);
+        }
+    },
+
+    actions : { // working async better than mutations
+        // newUser(context,item){ // first parameter  context is working like instance a vuex.
+        //     setTimeout(() => {
+        //         context.commit("newUser",item);
+        //     }, 2000);
+        // },
+        newUser({commit},item){ // first parameter  context is working like instance a vuex.
+            setTimeout(() => {
+                commit("newUser",item);
+            }, 2000);
+        },
+    },
+
     getters :{
         _woodItems : state => state.itemList.filter(i => i.type=="mobilya"),
         
@@ -38,7 +59,7 @@ const store = createStore({
             return user;
         },
         _getUsers: state =>  state.userList,
-        
+
     }
 })
 
