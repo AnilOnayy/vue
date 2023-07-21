@@ -1,5 +1,30 @@
 {
-    "users": [],
-    "bookmarks" : [],
-    "categories" : []
+  "users": [
+    {
+      "fullName": "Cengizhan Anıl Onay",
+      "userName": "reksnome",
+      "password": "U2FsdGVkX1/Irmxuj8LwEmVIJcTDk933yDrtfo4xsrA=",
+      "id": 1
+    },
+    {
+      "fullName": "1",
+      "userName": "1",
+      "password": "U2FsdGVkX1+ZAS4hcObBUjXsmGE1k53gef28deIgnT4=",
+      "id": 2
+    },
+    {
+      "fullName": "12",
+      "userName": "312",
+      "password": "490f754ecb5ec6458d50596277c2390fbe1a184c",
+      "id": 3
+    },
+    {
+      "fullName": "1",
+      "userName": "1",
+      "password": "f4caafa3af7ccf5acc25c656c0aa95567372a194",
+      "id": 4
+    }
+  ],
+  "bookmarks": [],
+  "categories": []
 }
