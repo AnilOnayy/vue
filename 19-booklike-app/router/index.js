@@ -31,17 +31,19 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next) => {
-  const authRequiredRoutes = [
-    "Home"
-  ];
+  const authRequiredRoutes = ["Home"];
+
+  const mustNotAuthenticated = ["Login","Register"]
 
   const _isAuthenticated = store.getters._isAuthenticated;
   
-  if( authRequiredRoutes.includes(to.name))
+  if( authRequiredRoutes.includes(to.name)) // If user in the AuthRequired Pages
   {
      if(_isAuthenticated) next();
      else next({name :"Login"});
   }
+  else if(mustNotAuthenticated.includes(to.name) && _isAuthenticated) next(false); // If user in the Authentication Pages and Is Authenticated
+  
   else{
     next();
   } 
