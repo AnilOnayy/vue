@@ -5,17 +5,22 @@ const routes = [
     { 
       name:"Home",
       path:"/",
-      component : () => import("@/views/HomeView")  
+      component : () => import("@/views/Home")  
     },
     { 
       name:"Login",
       path:"/login",
-      component : () => import("@/views/LoginView")  
+      component : () => import("@/views/Login")  
     },
     { 
       name:"Register",
       path:"/register",
-      component : () => import("@/views/RegisterView")  
+      component : () => import("@/views/Register")  
+    },
+    { 
+      name:"NewBookmark",
+      path:"/new",
+      component : () => import("@/views/NewBookmark")  
     },
 ]
 

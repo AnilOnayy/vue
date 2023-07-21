@@ -2,7 +2,7 @@
     <div>
         <div class="p-2 grid grid-cols-8 gap-4">
       
-          <AppBookmarkListItem  v-for="i in 30" :key="i" />
+          <AppBookmarkListItem  v-for="i in 5" :key="i" />
         </div>
       </div>
 </template>
