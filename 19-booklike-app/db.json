@@ -1,54 +1,59 @@
 {
   "users": [
     {
-      "fullName": "Cengizhan Anıl Onay",
-      "userName": "reksnome",
-      "password": "U2FsdGVkX1/Irmxuj8LwEmVIJcTDk933yDrtfo4xsrA=",
-      "id": 1
-    },
-    {
-      "fullName": "1",
-      "userName": "1",
-      "password": "U2FsdGVkX1+ZAS4hcObBUjXsmGE1k53gef28deIgnT4=",
-      "id": 2
-    },
-    {
-      "fullName": "12",
-      "userName": "312",
-      "password": "490f754ecb5ec6458d50596277c2390fbe1a184c",
-      "id": 3
-    },
-    {
-      "fullName": "1",
-      "userName": "1",
-      "password": "f4caafa3af7ccf5acc25c656c0aa95567372a194",
-      "id": 4
-    },
-    {
       "fullName": "Anıl Onay",
       "userName": "reksnome",
       "password": "c0945218bd4c5614b3736d8593a72933401a20f5",
-      "id": 5
+      "id": 5,
+      "likes": [],
+      "bookmarks": []
     }
   ],
   "bookmarks": [
     {
-      "title": "1",
-      "url": "1",
+      "title": "Vuex Kullanımı",
+      "url": "https://www.vuex.vuejs.org",
       "categoryId": 1,
-      "description": "1",
-      "userId": 4,
-      "created_at": "2023-07-22T12:03:14.196Z",
+      "description": "Using VUEX",
+      "userId": 5,
+      "created_at": "2023-07-22T13:21:05.423Z",
       "id": 1
     },
     {
-      "title": "React.JS",
-      "url": "https://www.react.org",
+      "title": "Redux Kullanımı",
+      "url": "https://www.redux.com",
       "categoryId": 2,
-      "description": "React offical organization website.",
+      "description": "React Redux State Management",
       "userId": 5,
-      "created_at": "2023-07-22T12:08:55.352Z",
+      "created_at": "2023-07-22T13:21:26.733Z",
       "id": 2
+    },
+    {
+      "title": "Front-end Roadmap",
+      "url": "https://www.roadmap.sh",
+      "categoryId": 3,
+      "description": "Roadmap.sh",
+      "userId": 5,
+      "created_at": "2023-07-22T13:22:40.630Z",
+      "id": 3
+    },
+    {
+      "title": "Bohem Kafe",
+      "url": "https://www.bohemkafe.com",
+      "categoryId": 6,
+      "description": "Samsunun en güzel wafflecisi",
+      "userId": 5,
+      "created_at": "2023-07-22T13:23:29.003Z",
+      "id": 5
+    },
+    {
+      "title": "Laravel",
+      "url": "https://laravel.com",
+      "categoryId": 4,
+      "description": "It seems like ı will learn this...",
+      "userId": 5,
+      "created_at": "2023-07-22T13:24:02.844Z",
+      "id": 6
     }
   ],
   "categories": [

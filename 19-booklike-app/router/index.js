@@ -20,9 +20,25 @@ const routes = [
     },
     { 
       name:"NewBookmark",
-      path:"/new",
-      component : () => import("@/views/NewBookmark")  
+      path:"/add",
+      component : () => import("@/views/Account")  
     },
+    { 
+      name:"Favorites",
+      path:"/favorites",
+      component : () => import("@/views/Account")  
+    },
+    { 
+      name:"Likes",
+      path:"/likes",
+      component : () => import("@/views/Account")  
+    },
+    { 
+      name:"Settings",
+      path:"/settings",
+      component : () => import("@/views/Account")  
+    },
+
 ]
 
 const router = createRouter({

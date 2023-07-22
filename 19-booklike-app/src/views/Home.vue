@@ -1,6 +1,6 @@
 <template>
    <div class="flex flex-row">
-        <SideBar />
+        <SideBar @category-change="updateBookMarkList" />
         <AppBookmarkList  :bookmarkList="bookmarkList" />
    </div>
 </template>
@@ -19,13 +19,33 @@ export default {
     components:{
         SideBar
     },
-
-    created()
+    mounted()
     {
-        this.$appAxios.get("/bookmarks?_expand=category&_expand=user")
-        .then(response => {
-            this.bookmarkList = response?.data || [];
-        })
+        this.fetchAllCategories();
+
+    },
+    methods:{
+        updateBookMarkList(categoryId)
+        {
+            if(categoryId==null)
+            {
+                this.fetchAllCategories();
+            }
+            else{
+                this.$appAxios.get(`/bookmarks?_expand=category&_expand=user&categoryId=${categoryId}`)
+                .then(response => {
+                    this.bookmarkList = response?.data || [];
+                })
+            }
+           
+        },
+        fetchAllCategories()
+        {
+            this.$appAxios.get("/bookmarks?_expand=category&_expand=user")
+            .then(response => {
+                this.bookmarkList = response?.data || [];
+            })
+        }
     }
 }
 </script>
