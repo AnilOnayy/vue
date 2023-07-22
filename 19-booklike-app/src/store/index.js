@@ -33,7 +33,8 @@ export default createStore({
     },
 
     plugins : [createPersistedState({
-        // key : "user" // spesific key name for local sto
+        // key : "user" // spesific key name for local store. but this is unecessary
+      
         storage: {
             getItem: (key) => ls.get(key),
             setItem: (key, value) => ls.set(key, value),

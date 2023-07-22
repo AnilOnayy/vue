@@ -25,6 +25,68 @@
       "id": 4
     }
   ],
-  "bookmarks": [],
-  "categories": []
+  "bookmarks": [
+    {
+      "title": "Front End Masters",
+      "url": "https://...",
+      "category_id": 3,
+      "description": "Güzel kaynak.",
+      "user_id": 4,
+      "created_at": "2023-07-22T09:56:51.096Z",
+      "id": 1
+    },
+    {
+      "title": "124",
+      "url": "21412",
+      "category_id": 2,
+      "description": "421421",
+      "user_id": 4,
+      "created_at": "2023-07-22T09:58:31.599Z",
+      "id": 2
+    },
+    {
+      "title": "12412",
+      "url": "42",
+      "category_id": 0,
+      "description": "14124",
+      "user_id": 4,
+      "created_at": "2023-07-22T09:58:43.139Z",
+      "id": 3
+    },
+    {
+      "title": "124",
+      "url": "4",
+      "category_id": 0,
+      "description": "424\n",
+      "user_id": 4,
+      "created_at": "2023-07-22T10:41:27.191Z",
+      "id": 4
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Vue JS"
+    },
+    {
+      "id": 2,
+      "name": "ReactJs"
+    },
+    {
+      "id": 3,
+      "name": "Front End"
+    },
+    {
+      "id": 4,
+      "name": "Back End"
+    },
+    {
+      "id": 5,
+      "name": "Cloud"
+    },
+    {
+      "id": 6,
+      "name": "Social Life"
+    }
+  ]
 }
