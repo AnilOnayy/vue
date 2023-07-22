@@ -3,7 +3,7 @@
       <h3 class="text-2xl text-center mb-3">Add New</h3>
       <input  ref="title" v-model="data.title" type="text" placeholder="Title" class="input mb-3" />
       <input v-model="data.url" type="text" placeholder="URL" class="input mb-3" />
-      <select v-model="data.category_id" class="input mb-3">
+      <select v-model="data.categoryId" class="input mb-3">
         <option disabled value="0"  selected>Select Category</option>
         <option 
         v-for="category in categories" 
@@ -34,7 +34,7 @@ export default {
             data : {
                 title : null,
                 url : null,
-                category_id : 0,
+                categoryId : 0,
                 description:null
             },
             categories :  []
@@ -49,11 +49,10 @@ export default {
         });
 
         
-        console.log(this.$refs.title); // sometimes this is not working , this is a bug of vue js
+        // console.log(this.$refs.title); // sometimes this is not working , this is a bug of vue js
 
         // absoluetly working version
         this.$nextTick(() => {
-            console.log(this.$refs.title);
             this.$refs.title.focus()
         })
     },
@@ -67,7 +66,7 @@ export default {
             console.log(this.data);
             let requestBody  = {
                 ...this.data,
-                user_id : this._getCurrentUser.id,
+                userId : this._getCurrentUser.id,
                 created_at : new Date()
             };
             this.$appAxios.post("/bookmarks",requestBody)

@@ -1,8 +1,7 @@
 <template>
     <div>
         <div class="p-2 grid grid-cols-8 gap-4">
-      
-          <AppBookmarkListItem  v-for="i in 5" :key="i" />
+          <AppBookmarkListItem  :bookmark="bookmark" v-for="bookmark in bookmarkList" :key="bookmark" />
         </div>
       </div>
 </template>
@@ -13,6 +12,14 @@
 
 import AppBookmarkListItem from './AppBookmarkListItem.vue';
 export default {
+  
+    props : {
+      bookmarkList :{
+        type : Array,
+        required :true,
+        default : () => []
+      }
+    },
 
     components:{
         AppBookmarkListItem
