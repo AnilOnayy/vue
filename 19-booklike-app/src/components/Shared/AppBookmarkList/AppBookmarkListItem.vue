@@ -3,13 +3,13 @@
             <div class="p-3">
               <a href="#" class="hover:text-black font-bold text-l mb-1 text-gray-600 text-center">{{ bookmark.title || "-" }}</a>
               <div class="flex items-center justify-center mt-2 gap-x-1">
-                <button @click="likeBookmark" class="like-btn group " :class="{ 'bookmark-item-active' : isLiked }">
+                <button @click="likeBookmark" class="like-btn group " :class="{ 'bookmark-item-active' : isLiked.bool }">
                   <svg xmlns="http://www.w3.org/2000/svg" class="fill-current group-hover:text-white" height="24" viewBox="0 0 24 24" width="24">
                     <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
                     <path d="M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2zM9 9l4.34-4.34L12 10h9v2l-3 7H9V9zM1 9h4v12H1z" />
                   </svg>
                 </button>
-                <button @click="saveBookmark" class="bookmark-btn group" :class="{ 'bookmark-item-active' : isBookmarked }">
+                <button @click="saveBookmark" class="bookmark-btn group" :class="{ 'bookmark-item-active' : isBookmarked.bool }">
                   <svg xmlns="http://www.w3.org/2000/svg" class="fill-current group-hover:text-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="24" height="24">
                     <rect fill="none" />
                     <path d="M17,11v6.97l-5-2.14l-5,2.14V5h6V3H7C5.9,3,5,3.9,5,5v16l7-3l7,3V11H17z M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z" />
@@ -52,13 +52,27 @@ export default {
       userName(){
         return this.bookmark?.user?.fullName || "-";
       },
-      isLiked(){ 
-        return   this._userLikes.indexOf(this.bookmark.id) > -1;
+
+
+
+      isLiked()
+      {
+        let user_like = this._userLikes.find(like => like.bookmarkId === this.bookmark.id ) || false;
+
+        return {
+          bool : Boolean( user_like),
+          object : user_like
+        };
       },
-      
-      isBookmarked(){ 
-        return   this._userBookmarks.indexOf(this.bookmark.id) > -1;
+      isBookmarked()
+      {
+        let user_bookmark =   this._userBookmarks.find(bookmark => bookmark.bookmarkId === this.bookmark.id ) || false;
+        return {
+          bool : Boolean( user_bookmark),
+          object : user_bookmark
+        };
       },
+
       userLikes ()
       {
         return this._userLikes
@@ -71,36 +85,38 @@ export default {
     methods :{
       likeBookmark()
       {
-        const likes  = [...this.userLikes];
-        if(this.isLiked)
-        {
-          likes.splice( likes.indexOf(this.bookmark.id) ,1);
-        }
-        else{
-          likes.push(this.bookmark.id);
-        }
-        this.$appAxios.patch(`/users/${ this._getCurrentUser.id}`,{likes})
-          .then( () => {
+        let likes = [...this._userLikes];
+        this.$appAxios({
+          url : this.isLiked.bool ?  `/user_likes/${this.isLiked.object.id}` :  "/user_likes/",
+          method : this.isLiked.bool ? "DELETE" : "POST",
+          data :{
+            userId : this._getCurrentUser.id,
+            bookmarkId : this.bookmark.id
+          } 
+        }).then(like_response => {
+            this.isLiked.bool ?  likes = likes.filter(l => l.id!==this.isLiked.object.id)  :  likes.push(like_response.data) ;
             this.$store.commit("setLikes",likes);
-          });
+            console.log(likes);
+        })
         
       },
       saveBookmark()
       {
-        const bookmarks  = [...this.userBookmarks];
-        if(this.isBookmarked)
-        {
-          bookmarks.splice( bookmarks.indexOf(this.bookmark.id) ,1);
-        }
-        else{
-          bookmarks.push(this.bookmark.id);
-        }
-        this.$appAxios.patch(`/users/${ this._getCurrentUser.id}`,{bookmarks})
-          .then( () => {
+        let bookmarks = [...this._userBookmarks];
+        this.$appAxios({
+          url : this.isBookmarked.bool ?  `/user_bookmarks/${this.isBookmarked.object.id}` :  "/user_bookmarks/",
+          method : this.isBookmarked.bool ? "DELETE" : "POST",
+          data :{
+            userId : this._getCurrentUser.id,
+            bookmarkId : this.bookmark.id
+          } 
+        }).then(bookmark_response => {
+            this.isBookmarked.bool ?  bookmarks = bookmarks.filter(l => l.id!==this.isBookmarked.object.id)  :  bookmarks.push(bookmark_response.data) ;
             this.$store.commit("setBookmarks",bookmarks);
-          });
+            console.log(bookmarks);
+        })
         
-      }
+      },
     }
 }
 </script>

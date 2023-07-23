@@ -1,7 +1,9 @@
 <template>
     <div class="flex flex-row">
         <side-bar />
-        <AppBookmarkList :bookmarkList="bookmarkList" />
+        {{ $log($route) }}
+        <component :is="$route.meta.componentName" :bookmarkList="bookmarkList" />
+        <!-- <AppBookmarkList :bookmarkList="bookmarkList" /> -->
     </div>
 </template>
 
@@ -9,7 +11,10 @@
 
 <script>
 import SideBar from '@/components/Account/SideBar.vue'
-import AppBookmarkList from '@/components/Shared/AppBookmarkList';
+import Likes from '@/components/Account/Likes.vue';
+import Favorites from '@/components/Account/Favorites.vue';
+import Settings from '@/components/Account/Settings.vue';
+
 export default {
     data() {
         return {
@@ -18,15 +23,17 @@ export default {
     },
 
     created() {
-        this.$appAxios.get(`/bookmarks?_expand=category&_expand=user&categoryId=${categoryId}`)
+        this.$appAxios.get(`/bookmarks?_expand=category&_expand=user`)
         .then(response => {
             this.bookmarkList = response?.data || [];
         })
-    }
+    },
 
     components: {
         SideBar,
-        AppBookmarkList
+        Likes,
+        Favorites,
+        Settings
     }
 }
 </script>

@@ -5,7 +5,6 @@
       "userName": "reksnome",
       "password": "c0945218bd4c5614b3736d8593a72933401a20f5",
       "id": 5,
-      "likes": [],
       "bookmarks": []
     }
   ],
@@ -80,6 +79,35 @@
     {
       "id": 6,
       "name": "Social Life"
+    }
+  ],
+  "user_bookmarks": [
+    {
+      "userId": 5,
+      "bookmarkId": 3,
+      "id": 3
+    },
+    {
+      "userId": 5,
+      "bookmarkId": 5,
+      "id": 6
+    }
+  ],
+  "user_likes": [
+    {
+      "userId": 5,
+      "bookmarkId": 1,
+      "id": 1
+    },
+    {
+      "userId": 5,
+      "bookmarkId": 5,
+      "id": 2
+    },
+    {
+      "userId": 5,
+      "bookmarkId": 6,
+      "id": 3
     }
   ]
 }

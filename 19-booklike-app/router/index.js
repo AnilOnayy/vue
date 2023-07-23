@@ -26,16 +26,25 @@ const routes = [
     { 
       name:"Favorites",
       path:"/favorites",
+      meta : {
+        componentName: "favorites"
+      },
       component : () => import("@/views/Account")  
     },
     { 
       name:"Likes",
       path:"/likes",
+      meta : {
+        componentName: "likes"
+      },
       component : () => import("@/views/Account")  
     },
     { 
       name:"Settings",
       path:"/settings",
+      meta : {
+        componentName: "settings"
+      },
       component : () => import("@/views/Account")  
     },
 

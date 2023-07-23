@@ -22,6 +22,7 @@ app.component("AppHeader",appHeader);
 app.component("AppBookmarkList",AppBookmarkList);
 
 app.config.globalProperties.$appAxios = appAxios;
+app.config.globalProperties.$log = console.log;
 
 
 app.mount('#app');

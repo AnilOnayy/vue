@@ -26,7 +26,6 @@ export default createStore({
         {
             state.user.bookmarks = bookmarks;
         }
-        
     },
 
     getters :{

@@ -9,6 +9,7 @@
 <script>
 
 import SideBar from '@/components/Home/SidebarComp.vue'
+import { mapGetters } from 'vuex';
 
 export default {
     data() {
@@ -23,6 +24,19 @@ export default {
     {
         this.fetchAllCategories();
 
+        this.$appAxios.get(`/user_likes?userId=${this._getCurrentUser.id}`)
+        .then(response => {
+            this.$store.commit("setLikes",response.data);
+        });
+
+        this.$appAxios.get(`/user_bookmarks?userId=${this._getCurrentUser.id}`)
+        .then(response => {
+            this.$store.commit("setBookmarks",response.data);
+        })
+
+    },
+    computed :{ 
+        ...mapGetters(["_getCurrentUser"])
     },
     methods:{
         updateBookMarkList(categoryId)
