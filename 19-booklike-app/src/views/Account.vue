@@ -1,8 +1,13 @@
 <template>
     <div class="flex flex-row">
         <side-bar />
-        {{ $log($route) }}
-        <component :is="$route.meta.componentName" :bookmarkList="bookmarkList" />
+         <div>
+            <div class="socket">
+                <input @keydown.enter="SEND_MESSAGE" type="text" style="border:1px solid red;">
+            </div>
+         </div>
+         
+        <!-- <component :is="$route.meta.componentName" :bookmarkList="bookmarkList" /> -->
         <!-- <AppBookmarkList :bookmarkList="bookmarkList" /> -->
     </div>
 </template>
@@ -11,14 +16,14 @@
 
 <script>
 import SideBar from '@/components/Account/SideBar.vue'
-import Likes from '@/components/Account/Likes.vue';
-import Favorites from '@/components/Account/Favorites.vue';
-import Settings from '@/components/Account/Settings.vue';
+// import Likes from '@/components/Account/Likes.vue';
+// import Favorites from '@/components/Account/Favorites.vue';
+// import Settings from '@/components/Account/Settings.vue';
 
 export default {
     data() {
         return {
-            bookmarkList: []
+            bookmarkList: [],
         }
     },
 
@@ -26,14 +31,16 @@ export default {
         this.$appAxios.get(`/bookmarks?_expand=category&_expand=user`)
         .then(response => {
             this.bookmarkList = response?.data || [];
-        })
+        });
     },
+ 
+
 
     components: {
         SideBar,
-        Likes,
-        Favorites,
-        Settings
+        // Likes,
+        // Favorites,
+        // Settings
     }
 }
 </script>

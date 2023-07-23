@@ -71,8 +71,15 @@ export default {
             };
             this.$appAxios.post("/bookmarks",requestBody)
             .then(save_response => {
-                console.log(save_response);
+
+                this.$socket.emit("NEW_BOOKMARK_EVENT",{
+                    ...save_response.data,
+                    user : this._getCurrentUser,
+                    category : this.categories.find(c => c.id===requestBody.categoryId)
+                });
+
                 Object.keys(this.data).forEach( field => this.data[field] = null ); // reset all fields
+                this.$router.push({name:'Home'});
             })
         }
     }

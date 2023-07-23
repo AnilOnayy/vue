@@ -21,7 +21,7 @@ const routes = [
     { 
       name:"NewBookmark",
       path:"/add",
-      component : () => import("@/views/Account")  
+      component : () => import("@/views/NewBookmark")  
     },
     { 
       name:"Favorites",
